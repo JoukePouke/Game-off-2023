@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwolwfh6h7ree"]
+
+[ext_resource type="Texture2D" uid="uid://ydtsal4k2pf7" path="res://Assets/images/background.jpeg" id="1_r5l87"]
+
+[sub_resource type="SystemFont" id="SystemFont_8n3ll"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Sprite2D" parent="."]
+show_behind_parent = true
+position = Vector2(927, 536.5)
+scale = Vector2(6.46951, 8.26623)
+texture = ExtResource("1_r5l87")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Background"]
+offset_left = -110.0
+offset_top = -46.0
+offset_right = -48.0
+offset_bottom = -21.0
+theme_override_fonts/normal_font = SubResource("SystemFont_8n3ll")
+text = "Credits"

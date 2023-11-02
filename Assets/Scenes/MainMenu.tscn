@@ -1,0 +1,97 @@
+[gd_scene load_steps=8 format=3 uid="uid://vm0t0btpxqht"]
+
+[ext_resource type="Texture2D" uid="uid://cijg7kw6hqywv" path="res://Assets/images/cooltext446400659424639.png" id="1_0uq23"]
+[ext_resource type="Texture2D" uid="uid://d0uyvygml28l1" path="res://Assets/images/credits.png" id="2_gtuxv"]
+[ext_resource type="Texture2D" uid="uid://c3g3wtsiq1f4v" path="res://Assets/images/start.png" id="3_j4y7v"]
+[ext_resource type="Texture2D" uid="uid://bqaucqkqxunyt" path="res://Assets/images/quit.png" id="4_se0wr"]
+[ext_resource type="Texture2D" uid="uid://ydtsal4k2pf7" path="res://Assets/images/background.jpeg" id="5_1xut2"]
+
+[sub_resource type="GDScript" id="GDScript_opksj"]
+resource_name = "credits"
+script/source = "extends TextureButton
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_pressed():
+	get_tree().change_scene_to_file(\"res://Assets/Scenes/Credits.tscn\")
+"
+
+[sub_resource type="GDScript" id="GDScript_ht18n"]
+resource_name = "quit"
+script/source = "extends TextureButton
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_pressed():
+	get_tree().quit()
+"
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Sprite2D" parent="."]
+show_behind_parent = true
+position = Vector2(927, 536.5)
+scale = Vector2(6.46951, 8.26623)
+texture = ExtResource("5_1xut2")
+
+[node name="Credits" type="TextureButton" parent="."]
+offset_left = 1330.0
+offset_top = 574.0
+offset_right = 1725.0
+offset_bottom = 752.0
+texture_normal = ExtResource("2_gtuxv")
+stretch_mode = 4
+script = SubResource("GDScript_opksj")
+
+[node name="Cooltext446400659424639" type="TextureRect" parent="."]
+offset_left = 459.0
+offset_top = 136.0
+offset_right = 1450.0
+offset_bottom = 369.0
+texture = ExtResource("1_0uq23")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Start" type="TextureButton" parent="."]
+offset_left = 161.0
+offset_top = 352.0
+offset_right = 606.0
+offset_bottom = 583.0
+texture_normal = ExtResource("3_j4y7v")
+stretch_mode = 4
+
+[node name="Quit" type="TextureButton" parent="."]
+offset_left = 193.0
+offset_top = 780.0
+offset_right = 451.0
+offset_bottom = 932.0
+texture_normal = ExtResource("4_se0wr")
+stretch_mode = 4
+script = SubResource("GDScript_ht18n")
+
+[connection signal="pressed" from="Credits" to="Credits" method="_on_pressed"]
+[connection signal="pressed" from="Quit" to="Quit" method="_on_pressed"]
