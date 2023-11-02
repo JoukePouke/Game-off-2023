@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://vm0t0btpxqht"]
+[gd_scene load_steps=9 format=3 uid="uid://vm0t0btpxqht"]
 
 [ext_resource type="Texture2D" uid="uid://cijg7kw6hqywv" path="res://Assets/images/cooltext446400659424639.png" id="1_0uq23"]
 [ext_resource type="Texture2D" uid="uid://d0uyvygml28l1" path="res://Assets/images/credits.png" id="2_gtuxv"]
@@ -23,6 +23,25 @@ func _process(delta):
 
 func _on_pressed():
 	get_tree().change_scene_to_file(\"res://Assets/Scenes/Credits.tscn\")
+"
+
+[sub_resource type="GDScript" id="GDScript_mke8p"]
+resource_name = "start"
+script/source = "extends TextureButton
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_pressed():
+	get_tree().change_scene_to_file(\"res://Assets/Scenes/MainLevel.tscn\")
 "
 
 [sub_resource type="GDScript" id="GDScript_ht18n"]
@@ -83,6 +102,7 @@ offset_right = 606.0
 offset_bottom = 583.0
 texture_normal = ExtResource("3_j4y7v")
 stretch_mode = 4
+script = SubResource("GDScript_mke8p")
 
 [node name="Quit" type="TextureButton" parent="."]
 offset_left = 193.0
@@ -94,4 +114,5 @@ stretch_mode = 4
 script = SubResource("GDScript_ht18n")
 
 [connection signal="pressed" from="Credits" to="Credits" method="_on_pressed"]
+[connection signal="pressed" from="Start" to="Start" method="_on_pressed"]
 [connection signal="pressed" from="Quit" to="Quit" method="_on_pressed"]
