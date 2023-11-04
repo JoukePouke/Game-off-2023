@@ -2,11 +2,12 @@ extends CharacterBody3D
 
 const ACCEL = 10
 const DEACCEL = 30
-
-const SPEED = 5.0
+@export
+var SPEED = 5.0
 const SPRINT_MULT = 2
 const JUMP_VELOCITY = 4.5
-const MOUSE_SENSITIVITY = 0.06
+@export
+var MOUSE_SENSITIVITY = 0.06
 
 # Get the gravity from the project settings to be synced with RigidDynamicBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -56,7 +57,7 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta
 
 	# Handle Jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	
 	# This just controls acceleration. Don't touch it.
@@ -66,23 +67,20 @@ func _physics_process(delta):
 		moving = true
 	else:
 		accel = DEACCEL
-		moving = false
+		moving = true
 
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with a custom keymap depending on your control scheme. These strings default to the arrow keys layout.
-	var input_dir = Input.get_vector("left", "right", "up", "down")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized() * accel * delta
+
+		
+
+	if Input.is_action_pressed("left"):
+		velocity.x = 7 * delta * SPEED
+	elif Input.is_action_pressed("right"):
+		velocity.x = -7 * delta * SPEED
+	velocity.z = 10 * delta * SPEED
 	if Input.is_key_pressed(KEY_SHIFT):
-		direction = direction * SPRINT_MULT
-	else:
-		pass
-
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-
+		velocity.x = velocity.x * SPRINT_MULT
 	move_and_slide()
+	velocity.x = 0
