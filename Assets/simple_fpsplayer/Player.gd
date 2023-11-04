@@ -20,7 +20,7 @@ var rotation_helper
 var dir = Vector3.ZERO
 var flashlight
 @onready var cameras = [camera1, camera2, camera3]
-var activecamera = 0
+var activecamera = 1
 func _ready():
 	camera = $rotation_helper/Camera3D
 	rotation_helper = $rotation_helper

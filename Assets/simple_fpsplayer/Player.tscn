@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://Assets/simple_fpsplayer/Player.gd" id="1_1fhis"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_euj4i"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3fqwn"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_s7o0o"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1hev4"]
 
 [node name="Player" type="CharacterBody3D"]
 disable_mode = 2
@@ -12,9 +12,6 @@ floor_max_angle = 0.802851
 safe_margin = 0.864
 script = ExtResource("1_1fhis")
 SPEED = 24.255
-
-[node name="body" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_euj4i")
 
 [node name="rotation_helper" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -29,5 +26,8 @@ current = true
 [node name="Camera3D3" type="Camera3D" parent="rotation_helper"]
 transform = Transform3D(1, 0, 0, 0, 0.944485, 0.328553, 0, -0.328553, 0.944485, -0.24273, 2.17411, 6.01255)
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_3fqwn")
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_s7o0o")
+mesh = SubResource("CapsuleMesh_1hev4")
