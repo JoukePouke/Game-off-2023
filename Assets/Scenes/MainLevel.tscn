@@ -64,7 +64,9 @@ safe_margin = 0.216
 
 [node name="OmniLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.821816, 0.569753, 0, -0.569753, 0.821816, 0, 13.5715, 15.1227)
-light_energy = 0.905
+light_color = Color(1, 0.223529, 1, 1)
+light_energy = 1.293
+directional_shadow_mode = 0
 
 [node name="respawn" type="Marker3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 6.06272, -3.61863)
