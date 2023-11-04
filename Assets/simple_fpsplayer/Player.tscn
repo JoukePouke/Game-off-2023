@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dgpjxoygnvyy4"]
+[gd_scene load_steps=4 format=3 uid="uid://dgpjxoygnvyy4"]
 
 [ext_resource type="Script" path="res://Assets/simple_fpsplayer/Player.gd" id="1_1fhis"]
-[ext_resource type="Script" path="res://Assets/simple_fpsplayer/ability_grab.gd" id="2_gwqkd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_euj4i"]
 
@@ -21,21 +20,14 @@ shape = SubResource("CapsuleShape3D_euj4i")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="Camera3D" type="Camera3D" parent="rotation_helper"]
+current = true
 
-[node name="flashlight_player" type="SpotLight3D" parent="rotation_helper/Camera3D"]
-visible = false
-light_energy = 3.0
-light_bake_mode = 0
-spot_range = 10.0
-spot_angle = 15.0
-spot_angle_attenuation = 1.56917
+[node name="Camera3D2" type="Camera3D" parent="rotation_helper"]
+transform = Transform3D(1, 0, 0, 0, 0.926634, 0.375966, 0, -0.375966, 0.926634, -0.0639266, 1.01391, 2.53073)
+current = true
 
-[node name="ability_grab" type="RayCast3D" parent="rotation_helper/Camera3D"]
-target_position = Vector3(0, 0, -2)
-script = ExtResource("2_gwqkd")
-
-[node name="GrabPosition3D" type="Marker3D" parent="rotation_helper/Camera3D/ability_grab"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+[node name="Camera3D3" type="Camera3D" parent="rotation_helper"]
+transform = Transform3D(1, 0, 0, 0, 0.944485, 0.328553, 0, -0.328553, 0.944485, -0.24273, 2.17411, 6.01255)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_s7o0o")

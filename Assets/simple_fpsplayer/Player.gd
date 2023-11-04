@@ -8,7 +8,10 @@ const SPRINT_MULT = 2
 const JUMP_VELOCITY = 4.5
 @export
 var MOUSE_SENSITIVITY = 0.06
-
+@onready
+var camera1 = $rotation_helper/Camera3D
+@onready var camera2 = $rotation_helper/Camera3D2
+@onready var camera3 = $rotation_helper/Camera3D3
 # Get the gravity from the project settings to be synced with RigidDynamicBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -16,7 +19,8 @@ var camera
 var rotation_helper
 var dir = Vector3.ZERO
 var flashlight
-
+@onready var cameras = [camera1, camera2, camera3]
+var activecamera = 0
 func _ready():
 	camera = $rotation_helper/Camera3D
 	rotation_helper = $rotation_helper
@@ -44,11 +48,9 @@ func _input(event):
 	
 	# Flashlight toggle. Defaults to F on Keyboard.
 	if event is InputEventKey:
-		if event.pressed and event.keycode == KEY_F:
-			if flashlight.is_visible_in_tree() and not event.echo:
-				flashlight.hide()
-			elif not event.echo:
-				flashlight.show()
+		if event.pressed and event.keycode == KEY_F1:
+			activecamera = (activecamera + 1) % 3
+			cameras[activecamera].current = true
 
 func _physics_process(delta):
 	var moving = false
