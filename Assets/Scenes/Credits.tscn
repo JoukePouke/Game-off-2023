@@ -2,7 +2,23 @@
 
 [ext_resource type="Texture2D" uid="uid://ydtsal4k2pf7" path="res://Assets/images/background.jpeg" id="1_r5l87"]
 
-[sub_resource type="SystemFont" id="SystemFont_8n3ll"]
+[sub_resource type="GDScript" id="GDScript_2q1wy"]
+script/source = "extends Button
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_pressed():
+	get_tree().change_scene_to_file(\"res://Assets/Scenes/MainMenu.tscn\")
+"
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -14,14 +30,33 @@ grow_vertical = 2
 
 [node name="Background" type="Sprite2D" parent="."]
 show_behind_parent = true
-position = Vector2(927, 536.5)
-scale = Vector2(6.46951, 8.26623)
+position = Vector2(956.5, 558)
+scale = Vector2(6.46036, 8.31169)
 texture = ExtResource("1_r5l87")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Background"]
-offset_left = -110.0
-offset_top = -46.0
-offset_right = -48.0
-offset_bottom = -21.0
-theme_override_fonts/normal_font = SubResource("SystemFont_8n3ll")
-text = "Credits"
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1347.0
+offset_top = 829.0
+offset_right = 1752.0
+offset_bottom = 972.0
+theme_override_font_sizes/font_size = 49
+text = "Back"
+script = SubResource("GDScript_2q1wy")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 204.0
+offset_top = 176.0
+offset_right = 1257.0
+offset_bottom = 1080.0
+theme_override_font_sizes/normal_font_size = 46
+text = "Developers:
+- joukepouke
+- conaitus
+- aphixba
+
+Sound Composer:
+- justaguy"
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
