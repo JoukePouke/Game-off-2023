@@ -17,8 +17,15 @@ config/icon="res://icon.svg"
 
 [display]
 
-window/size/mode=3
-window/size/resizable=false
+window/size/viewport_height=1080
+window/size/mode=2
+window/stretch/mode="viewport"
+window/per_pixel_transparency/allowed=true
+window/size/viewport_width=1920
+
+[dotnet]
+
+project/assembly_name="Src"
 
 [input]
 
@@ -51,3 +58,5 @@ down={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+anti_aliasing/quality/msaa_3d=3
+anti_aliasing/quality/screen_space_aa=1
