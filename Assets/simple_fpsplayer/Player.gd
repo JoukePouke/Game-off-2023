@@ -33,7 +33,7 @@ func _input(event):
 	# This section controls your player camera. Sensitivity can be changed.
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		rotation_helper.rotate_x(deg_to_rad(event.relative.y * MOUSE_SENSITIVITY * -1))
-		self.rotate_y(deg_to_rad(event.relative.x * MOUSE_SENSITIVITY * -1))
+		rotate_y(deg_to_rad(event.relative.x * MOUSE_SENSITIVITY * -1))
 
 		var camera_rot = rotation_helper.rotation
 		camera_rot.x = clampf(camera_rot.x, -1.4, 1.4)
@@ -51,6 +51,8 @@ func _input(event):
 		if event.pressed and event.keycode == KEY_F1:
 			activecamera = (activecamera + 1) % 3
 			cameras[activecamera].current = true
+		if event.pressed and event.keycode == KEY_ESCAPE:
+			get_tree().change_scene_to_file("res://Assets/Scenes/MainMenu.tscn")
 
 func _physics_process(delta):
 	var moving = false

@@ -59,7 +59,7 @@ script = SubResource("GDScript_301u6")
 shape = SubResource("ConcavePolygonShape3D_0e0y8")
 
 [node name="Player" parent="." instance=ExtResource("2_6bn0e")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.100833, 7.05775, -3.4303)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.100833, 5.50057, -0.305545)
 safe_margin = 0.216
 
 [node name="OmniLight3D" type="DirectionalLight3D" parent="."]
@@ -72,9 +72,7 @@ directional_shadow_mode = 0
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 6.06272, -3.61863)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 4.72629, 0, 3.53456, 0)
-use_collision = true
-size = Vector3(2, 2, 2)
+transform = Transform3D(1.21366, 0, 0, 0, 2.07616, 0, 0, 0, 4.72629, 0, 3.53456, 0)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.53456, 4.99224)
