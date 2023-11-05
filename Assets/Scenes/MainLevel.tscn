@@ -48,14 +48,26 @@ sky = SubResource("Sky_jd44h")
 script/source = "extends Label
 
 
+var enabled
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	
+	var config = ConfigFile.new()
+	# Load data from a file.
+	var err = config.load(\"user://settings.cfg\")
+	
+	for misc in config.get_sections():
+		# Fetch the data for each section.
+		enabled = config.get_value(misc, \"fps_counter_enabled\")
+		
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	set_text(\"FPS: \" + str(Engine.get_frames_per_second()))
+	if enabled:
+		set_text(\"FPS: \" + str(Engine.get_frames_per_second()))
 "
 
 [node name="MainLevel" type="Node3D"]
@@ -114,7 +126,7 @@ offset_top = 9.0
 offset_right = 351.0
 offset_bottom = 63.0
 theme_override_font_sizes/font_size = 18
-text = "FPS: 60"
+text = "   "
 script = SubResource("GDScript_cvst8")
 
 [node name="Player" parent="." instance=ExtResource("2_6bn0e")]

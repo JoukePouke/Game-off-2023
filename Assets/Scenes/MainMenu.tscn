@@ -1,10 +1,34 @@
-[gd_scene load_steps=9 format=3 uid="uid://vm0t0btpxqht"]
+[gd_scene load_steps=12 format=3 uid="uid://vm0t0btpxqht"]
 
 [ext_resource type="Texture2D" uid="uid://di4hoq38j24ki" path="res://Assets/images/background2.png" id="1_atmdh"]
 [ext_resource type="Texture2D" uid="uid://d0uyvygml28l1" path="res://Assets/images/credits.png" id="2_gtuxv"]
 [ext_resource type="Texture2D" uid="uid://b28k6gpej8687" path="res://Assets/images/headtext.png" id="3_3ie2y"]
 [ext_resource type="Texture2D" uid="uid://c3g3wtsiq1f4v" path="res://Assets/images/start.png" id="3_j4y7v"]
 [ext_resource type="Texture2D" uid="uid://bqaucqkqxunyt" path="res://Assets/images/quit.png" id="4_se0wr"]
+[ext_resource type="Texture2D" uid="uid://bcw8ojxvka3fo" path="res://Assets/images/settings.png" id="6_o1qda"]
+
+[sub_resource type="GDScript" id="GDScript_v4wxy"]
+script/source = "extends Control
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	var config = ConfigFile.new()
+	# Load data from a file.
+	var err = config.load(\"user://settings.cfg\")
+
+	# If the file didn't load, ignore it.
+	if err != OK:
+		print(\"error loading settings file, creating new settings file\")
+
+		config.set_value(\"misc\", \"fps_counter_enabled\", false)
+		config.save(\"user://settings.cfg\")
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
 
 [sub_resource type="GDScript" id="GDScript_opksj"]
 resource_name = "credits"
@@ -63,6 +87,25 @@ func _on_pressed():
 	get_tree().quit()
 "
 
+[sub_resource type="GDScript" id="GDScript_7u67g"]
+script/source = "extends TextureButton
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+
+func _on_pressed():
+	get_tree().change_scene_to_file(\"res://Assets/Scenes/Settings.tscn\")
+"
+
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -70,6 +113,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = SubResource("GDScript_v4wxy")
 
 [node name="Background" type="Sprite2D" parent="."]
 show_behind_parent = true
@@ -79,9 +123,9 @@ texture = ExtResource("1_atmdh")
 
 [node name="Credits" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 1352.0
+offset_left = 1344.0
 offset_top = 784.0
-offset_right = 2162.0
+offset_right = 2154.0
 offset_bottom = 1048.0
 scale = Vector2(0.546808, 0.618464)
 texture_normal = ExtResource("2_gtuxv")
@@ -110,15 +154,27 @@ script = SubResource("GDScript_mke8p")
 
 [node name="Quit" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 152.0
-offset_top = 808.0
-offset_right = 935.0
-offset_bottom = 1148.0
-scale = Vector2(0.412894, 0.422018)
+offset_left = 136.0
+offset_top = 784.0
+offset_right = 919.0
+offset_bottom = 1124.0
+scale = Vector2(0.410508, 0.454097)
 texture_normal = ExtResource("4_se0wr")
 stretch_mode = 4
 script = SubResource("GDScript_ht18n")
 
+[node name="Settings" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 712.0
+offset_top = 784.0
+offset_right = 1490.0
+offset_bottom = 1011.0
+scale = Vector2(0.536113, 0.709442)
+texture_normal = ExtResource("6_o1qda")
+stretch_mode = 4
+script = SubResource("GDScript_7u67g")
+
 [connection signal="pressed" from="Credits" to="Credits" method="_on_pressed"]
 [connection signal="pressed" from="Start" to="Start" method="_on_pressed"]
 [connection signal="pressed" from="Quit" to="Quit" method="_on_pressed"]
+[connection signal="pressed" from="Settings" to="Settings" method="_on_pressed"]

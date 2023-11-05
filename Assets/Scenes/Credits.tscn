@@ -47,7 +47,7 @@ script = SubResource("GDScript_2q1wy")
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
 offset_left = 204.0
-offset_top = 176.0
+offset_top = 76.0
 offset_right = 1257.0
 offset_bottom = 1080.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -57,6 +57,34 @@ text = "Developers:
 - conaitus
 
 Sound Composer:
-- justaguy"
+- justaguy
+
+3d Artist:
+- Napolean
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

@@ -1,0 +1,162 @@
+[gd_scene load_steps=7 format=3 uid="uid://boy3d144yjmgb"]
+
+[ext_resource type="Texture2D" uid="uid://di4hoq38j24ki" path="res://Assets/images/background2.png" id="1_x65jr"]
+[ext_resource type="Texture2D" uid="uid://37qje6sy7nq7" path="res://Assets/images/on.png" id="2_smm1i"]
+[ext_resource type="Texture2D" uid="uid://cojdhhali2pxp" path="res://Assets/images/off.png" id="3_ep41l"]
+
+[sub_resource type="GDScript" id="GDScript_yuwe6"]
+script/source = "extends Control
+
+
+var config = ConfigFile.new()
+# Load data from a file.
+var err = config.load(\"user://settings.cfg\")
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+"
+
+[sub_resource type="GDScript" id="GDScript_2q1wy"]
+script/source = "extends Button
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_pressed():
+	get_tree().change_scene_to_file(\"res://Assets/Scenes/MainMenu.tscn\")
+"
+
+[sub_resource type="GDScript" id="GDScript_itrtw"]
+script/source = "extends CheckButton
+
+var config = ConfigFile.new()
+# Load data from a file.
+var err = config.load(\"user://settings.cfg\")
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	var enabled
+	for misc in config.get_sections():
+		# Fetch the data for each section.
+		enabled = config.get_value(misc, \"fps_counter_enabled\")
+	
+	if enabled:
+		button_pressed = true
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_toggled(button_pressed):
+	if button_pressed:
+		config.set_value(\"misc\", \"fps_counter_enabled\", true)
+	else:
+		config.set_value(\"misc\", \"fps_counter_enabled\", false)
+	config.save(\"user://settings.cfg\")
+	
+"
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_yuwe6")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 77.0
+offset_top = 166.0
+offset_right = 117.0
+offset_bottom = 206.0
+scale = Vector2(14.2143, 20.723)
+color = Color(0, 0, 0, 0.203922)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 683.0
+offset_top = 166.0
+offset_right = 723.0
+offset_bottom = 206.0
+scale = Vector2(14.2143, 20.723)
+color = Color(0, 0, 0, 0.203922)
+
+[node name="Background" type="Sprite2D" parent="."]
+show_behind_parent = true
+position = Vector2(956, 428)
+scale = Vector2(1.66322, 1.80313)
+texture = ExtResource("1_x65jr")
+
+[node name="backbtn" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1352.0
+offset_top = 784.0
+offset_right = 1795.0
+offset_bottom = 947.0
+theme_override_font_sizes/font_size = 49
+text = "Back"
+script = SubResource("GDScript_2q1wy")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 147.0
+offset_right = 953.0
+offset_bottom = 166.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 95
+theme_override_font_sizes/bold_font_size = 93
+text = "Settings"
+
+[node name="settings" type="Node2D" parent="."]
+
+[node name="fpscounter" type="Node2D" parent="settings"]
+scale = Vector2(0.376936, 0.427023)
+
+[node name="ColorRect2" type="ColorRect" parent="settings/fpscounter"]
+offset_left = 257.338
+offset_top = 435.573
+offset_right = 297.338
+offset_bottom = 475.573
+scale = Vector2(5.59338, 2.23833)
+color = Color(0, 0, 0, 0.203922)
+
+[node name="CheckButton" type="CheckButton" parent="settings/fpscounter"]
+offset_left = 273.256
+offset_top = 436.497
+offset_right = 847.256
+offset_bottom = 705.497
+scale = Vector2(0.312713, 0.34099)
+theme_override_icons/checked = ExtResource("2_smm1i")
+theme_override_icons/unchecked = ExtResource("3_ep41l")
+script = SubResource("GDScript_itrtw")
+
+[node name="Label" type="Label" parent="settings/fpscounter"]
+offset_left = 495.256
+offset_top = 414.497
+offset_right = 1059.26
+offset_bottom = 565.497
+theme_override_colors/font_color = Color(0.239216, 0.239216, 0.239216, 1)
+theme_override_font_sizes/font_size = 96
+text = "FPS Counter"
+
+[connection signal="pressed" from="backbtn" to="backbtn" method="_on_pressed"]
+[connection signal="toggled" from="settings/fpscounter/CheckButton" to="settings/fpscounter/CheckButton" method="_on_toggled"]
