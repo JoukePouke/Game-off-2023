@@ -13,7 +13,7 @@ var camera1 = $rotation_helper/Camera3D
 @onready var camera2 = $rotation_helper/Camera3D2
 @onready var camera3 = $rotation_helper/Camera3D3
 # Get the gravity from the project settings to be synced with RigidDynamicBody nodes.
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var gravity = 5
 
 var camera
 var rotation_helper
@@ -57,6 +57,7 @@ func _input(event):
 func _physics_process(delta):
 	var moving = false
 	# Add the gravity. Pulls value from project settings.
+
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
