@@ -22,7 +22,6 @@ var flashlight
 @onready var cameras = [camera1, camera2, camera3]
 var activecamera = 1
 func _ready():
-	camera = $rotation_helper/Camera3D
 	rotation_helper = $rotation_helper/rot
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)

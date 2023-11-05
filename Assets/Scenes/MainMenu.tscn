@@ -148,6 +148,7 @@ offset_left = 552.0
 offset_top = 312.0
 offset_right = 1374.0
 offset_bottom = 624.0
+button_mask = 7
 texture_normal = ExtResource("3_j4y7v")
 stretch_mode = 4
 script = SubResource("GDScript_mke8p")
