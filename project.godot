@@ -31,6 +31,10 @@ window/per_pixel_transparency/allowed=true
 
 project/assembly_name="Src"
 
+[filesystem]
+
+import/fbx/enabled=false
+
 [input]
 
 left={
