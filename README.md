@@ -1,4 +1,4 @@
-# ExampleGameName1
+# Infinite Runner
 
 ## Table of Contents
 
@@ -15,11 +15,11 @@
 
 ## Overview
 
-Welcome to the README for "ExampleGameName1"! This document will provide you with essential information about our game, which is still in development.
+Welcome to the README for "Infinite Runner"! This document will provide you with essential information about our game, which is still in development.
 
 ## Game Information
 
-- **Title**: ExampleGameName1
+- **Title**: Infinite Runner
 - **Version**: 0.1.0 (Alpha)
 - **Developed with**: Godot Engine 4.1.2
 - **Genre**: [unknown]
@@ -27,14 +27,14 @@ Welcome to the README for "ExampleGameName1"! This document will provide you wit
 - **Platform**: [unknown]
 ## Installation
 
-To play "ExampleGameName1," please follow these installation instructions:
+To play "Infinite Runner," please follow these installation instructions:
 
 1. **Download the Game**: [unknown]
 2. **Installation Instructions**: [unknown]
 
 ## Controls
 
-Learn the game controls to navigate "ExampleGameName1" effectively:
+Learn the game controls to navigate "Infinite Runner" effectively:
 
 - **Keyboard/Mouse**:
   - WASD or Arrow Keys: Move
@@ -44,11 +44,11 @@ Learn the game controls to navigate "ExampleGameName1" effectively:
 
 ## Gameplay
 
-Explore the unique gameplay of "ExampleGameName1," which includes [unknown].
+Explore the unique gameplay of "Infinite Runner," which includes [unknown].
 
 ## Features
 
-Key features and highlights of "ExampleGameName1" include:
+Key features and highlights of "Infinite Runner" include:
 
 - [unknown]
 - [unknown]
@@ -62,21 +62,21 @@ Key features and highlights of "ExampleGameName1" include:
   - JoukePouke, conaitus - Game Artists
   - JoukePouke, conaitus - Game Designers
   - taylorbrook - Game Composer
-- **Progress**: "ExampleGameName1" is currently in its Alpha version (0.1.0), and we have ambitious plans for future updates and improvements.
+- **Progress**: "Infinite Runner" is currently in its Alpha version (0.1.0), and we have ambitious plans for future updates and improvements.
 - **Changelog**: View the [CHANGELOG.md](CHANGELOG.md) file for details on updates and changes.
 
 ## Feedback
 
-We value your feedback! If you encounter issues, have suggestions, or want to report bugs, please contact us on Discord (usernames: conaitus). Your input is crucial in making "ExampleGameName1" better.
+We value your feedback! If you encounter issues, have suggestions, or want to report bugs, please contact us on Discord (usernames: conaitus). Your input is crucial in making "Infinite Runner" better.
 
 ## Contributing
 
-We welcome contributions from the community. If you want to contribute to the development of "ExampleGameName1," please follow our [Contributing Guidelines] (if available) to get started.
+We welcome contributions from the community. If you want to contribute to the development of "Infinite Runner," please follow our [Contributing Guidelines] (if available) to get started.
 
 ## License
 
-"ExampleGameName1" is licensed under the [MIT License](LICENSE). You can find the full text of the license in the [LICENSE](LICENSE) file.
+"Infinite Runner" is licensed under the [MIT License](LICENSE). You can find the full text of the license in the [LICENSE](LICENSE) file.
 
 ---
 
-Feel free to customize this template with any other details specific to "ExampleGameName1."
+Feel free to customize this template with any other details specific to "Infinite Runner."
