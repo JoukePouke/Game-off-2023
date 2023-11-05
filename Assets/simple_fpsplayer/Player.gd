@@ -20,13 +20,27 @@ var rotation_helper
 var dir = Vector3.ZERO
 var flashlight
 @onready var cameras = [camera1, camera2, camera3]
-var activecamera = 1
+var activecamera
 func _ready():
 	rotation_helper = $rotation_helper/rot
-	
+	var enabled
+	var config = ConfigFile.new()
+	# Load data from a file.
+	var err = config.load("user://settings.cfg")
+	print(err)
+	for misc in config.get_sections():
+		# Fetch the data for each section.
+		enabled = config.get_value(misc, "defaultcamera_pov")
+	if enabled:
+		activecamera = 1
+		print("pov")
+	else:
+		activecamera = 2
+		print("nonpov")
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	anime.play("Take 001", -1, 0.7)
+	cameras[activecamera].current = true
 
 func _input(event):
 	# This section controls your player camera. Sensitivity can be changed.

@@ -58,8 +58,7 @@ func _ready():
 	
 	for misc in config.get_sections():
 		# Fetch the data for each section.
-		enabled = config.get_value(misc, \"fps_counter_enabled\")
-		
+		enabled = config.get_value(misc, \"defaultcamera_pov\")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -129,7 +128,6 @@ script = SubResource("GDScript_cvst8")
 [node name="Player" parent="." instance=ExtResource("2_6bn0e")]
 transform = Transform3D(-1, 0, -8.74279e-08, 0, 1, 0, 8.74279e-08, 0, -1, -0.000832997, 6.03648, -0.305545)
 disable_mode = 0
-safe_margin = 0.216
 SPEED = 15.395
 
 [connection signal="body_entered" from="MeshInstance3D/StaticBody3D" to="MeshInstance3D" method="_on_body"]
