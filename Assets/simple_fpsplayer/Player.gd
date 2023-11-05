@@ -27,16 +27,14 @@ func _ready():
 	var config = ConfigFile.new()
 	# Load data from a file.
 	var err = config.load("user://settings.cfg")
-	print(err)
 	for misc in config.get_sections():
 		# Fetch the data for each section.
 		enabled = config.get_value(misc, "defaultcamera_pov")
 	if enabled:
-		activecamera = 1
-		print("pov")
+		print("pov boy")
+		activecamera = 0
 	else:
-		activecamera = 2
-		print("nonpov")
+		activecamera = 1
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	anime.play("Take 001", -1, 0.7)
@@ -45,8 +43,8 @@ func _ready():
 func _input(event):
 	# This section controls your player camera. Sensitivity can be changed.
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		rotation_helper.rotate_x(deg_to_rad(event.relative.y * MOUSE_SENSITIVITY * -1))
-		$rotation_helper.rotate_y(deg_to_rad(event.relative.x * MOUSE_SENSITIVITY * -1))
+		#rotation_helper.rotate_x(deg_to_rad(event.relative.y * MOUSE_SENSITIVITY * -1))
+		#$rotation_helper.rotate_y(deg_to_rad(event.relative.x * MOUSE_SENSITIVITY * -1))
 
 		var camera_rot = rotation_helper.rotation
 		camera_rot.x = clampf(camera_rot.x, -1.4, 1.4)

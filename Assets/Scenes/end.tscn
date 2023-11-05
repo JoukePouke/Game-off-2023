@@ -23,7 +23,10 @@ offset_bottom = 40.0
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_right = 1035.0
+offset_bottom = 374.0
+theme_override_font_sizes/font_size = 75
 text = "please reload page"
+horizontal_alignment = 3
+uppercase = true
 script = SubResource("GDScript_pcgx3")

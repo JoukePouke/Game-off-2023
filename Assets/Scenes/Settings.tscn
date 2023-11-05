@@ -87,6 +87,7 @@ func _ready():
 	for misc in config.get_sections():
 		# Fetch the data for each section.
 		enabled = config.get_value(misc, \"defaultcamera_pov\")
+		
 	
 	if enabled:
 		button_pressed = true
@@ -101,7 +102,7 @@ func _on_toggled(button_pressed):
 	if button_pressed:
 		config.set_value(\"misc\", \"defaultcamera_pov\", true)
 	else:
-		config.set_value(\"misc\", \"defaultcamera_pov\", true)
+		config.set_value(\"misc\", \"defaultcamera_pov\", false)
 	config.save(\"user://settings.cfg\")
 "
 
