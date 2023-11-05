@@ -72,12 +72,6 @@ script = SubResource("GDScript_301u6")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("BoxShape3D_utaer")
 
-[node name="Player" parent="." instance=ExtResource("2_6bn0e")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.000832997, 6.03648, -0.305545)
-disable_mode = 0
-safe_margin = 0.216
-SPEED = 5.0
-
 [node name="OmniLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.821816, 0.569753, 0, -0.569753, 0.821816, 0, 13.5715, 15.1227)
 light_color = Color(1, 0.223529, 1, 1)
@@ -122,5 +116,11 @@ offset_bottom = 63.0
 theme_override_font_sizes/font_size = 18
 text = "FPS: 60"
 script = SubResource("GDScript_cvst8")
+
+[node name="Player" parent="." instance=ExtResource("2_6bn0e")]
+transform = Transform3D(-1, 0, -8.74279e-08, 0, 1, 0, 8.74279e-08, 0, -1, -0.000832997, 6.03648, -0.305545)
+disable_mode = 0
+safe_margin = 0.216
+SPEED = 15.395
 
 [connection signal="body_entered" from="MeshInstance3D/StaticBody3D" to="MeshInstance3D" method="_on_body"]

@@ -9,12 +9,12 @@ const JUMP_VELOCITY = 4.5
 @export
 var MOUSE_SENSITIVITY = 0.06
 @onready
-var camera1 = $rotation_helper/Camera3D
-@onready var camera2 = $rotation_helper/Camera3D2
-@onready var camera3 = $rotation_helper/Camera3D3
+var camera1 = $rotation_helper/rot/Camera3D
+@onready var camera2 = $rotation_helper/rot/Camera3D2
+@onready var camera3 = $rotation_helper/rot/Camera3D3
 # Get the gravity from the project settings to be synced with RigidDynamicBody nodes.
 var gravity = 5
-
+@onready var anime = $nat/AnimationPlayer
 var camera
 var rotation_helper
 var dir = Vector3.ZERO
@@ -23,17 +23,17 @@ var flashlight
 var activecamera = 1
 func _ready():
 	camera = $rotation_helper/Camera3D
-	rotation_helper = $rotation_helper
-	flashlight = $rotation_helper/Camera3D/flashlight_player
+	rotation_helper = $rotation_helper/rot
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	anime.play("Take 001", -1, 0.7)
 
 func _input(event):
 	# This section controls your player camera. Sensitivity can be changed.
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		rotation_helper.rotate_x(deg_to_rad(event.relative.y * MOUSE_SENSITIVITY * -1))
-		rotate_y(deg_to_rad(event.relative.x * MOUSE_SENSITIVITY * -1))
+		$rotation_helper.rotate_y(deg_to_rad(event.relative.x * MOUSE_SENSITIVITY * -1))
 
 		var camera_rot = rotation_helper.rotation
 		camera_rot.x = clampf(camera_rot.x, -1.4, 1.4)
@@ -56,6 +56,7 @@ func _input(event):
 
 func _physics_process(delta):
 	var moving = false
+	
 	# Add the gravity. Pulls value from project settings.
 
 	if not is_on_floor():
@@ -85,6 +86,11 @@ func _physics_process(delta):
 	elif Input.is_action_pressed("right"):
 		velocity.x = -7 * delta * SPEED
 	velocity.z = 10 * delta * SPEED
+	$nat.velocity.z = 10 * delta * SPEED * -1
+	if not anime.is_playing:
+		$nat.position = Vector3(0, 0, 0)
+		anime.play("Take 001")
+		
 	if Input.is_key_pressed(KEY_SHIFT):
 		velocity.x = velocity.x * SPRINT_MULT
 	move_and_slide()
