@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b0q81qutcdid3"]
+[gd_scene load_steps=13 format=3 uid="uid://b0q81qutcdid3"]
 
 [ext_resource type="Texture2D" uid="uid://yrnajsafss3o" path="res://Assets/images/images.jpeg" id="1_e4j2f"]
 [ext_resource type="PackedScene" uid="uid://dgpjxoygnvyy4" path="res://Assets/simple_fpsplayer/Player.tscn" id="2_6bn0e"]
@@ -43,6 +43,20 @@ sky_material = SubResource("ProceduralSkyMaterial_i5lsv")
 [sub_resource type="Environment" id="Environment_v1o86"]
 background_mode = 2
 sky = SubResource("Sky_jd44h")
+
+[sub_resource type="GDScript" id="GDScript_cvst8"]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	set_text(\"FPS: \" + str(Engine.get_frames_per_second()))
+"
 
 [node name="MainLevel" type="Node3D"]
 
@@ -99,5 +113,14 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.3863
 
 [node name="Box7" parent="Boxes" instance=ExtResource("3_wl8wf")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.43123, 5.33346, 13.0955)
+
+[node name="FPScounter" type="Label" parent="."]
+offset_left = 11.0
+offset_top = 9.0
+offset_right = 351.0
+offset_bottom = 63.0
+theme_override_font_sizes/font_size = 18
+text = "FPS: 60"
+script = SubResource("GDScript_cvst8")
 
 [connection signal="body_entered" from="MeshInstance3D/StaticBody3D" to="MeshInstance3D" method="_on_body"]

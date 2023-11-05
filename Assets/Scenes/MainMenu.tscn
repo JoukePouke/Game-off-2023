@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://vm0t0btpxqht"]
 
-[ext_resource type="Texture2D" uid="uid://cijg7kw6hqywv" path="res://Assets/images/cooltext446400659424639.png" id="1_0uq23"]
+[ext_resource type="Texture2D" uid="uid://di4hoq38j24ki" path="res://Assets/images/background2.png" id="1_atmdh"]
 [ext_resource type="Texture2D" uid="uid://d0uyvygml28l1" path="res://Assets/images/credits.png" id="2_gtuxv"]
+[ext_resource type="Texture2D" uid="uid://b28k6gpej8687" path="res://Assets/images/headtext.png" id="3_3ie2y"]
 [ext_resource type="Texture2D" uid="uid://c3g3wtsiq1f4v" path="res://Assets/images/start.png" id="3_j4y7v"]
 [ext_resource type="Texture2D" uid="uid://bqaucqkqxunyt" path="res://Assets/images/quit.png" id="4_se0wr"]
-[ext_resource type="Texture2D" uid="uid://ydtsal4k2pf7" path="res://Assets/images/background.jpeg" id="5_1xut2"]
 
 [sub_resource type="GDScript" id="GDScript_opksj"]
 resource_name = "credits"
@@ -73,45 +73,48 @@ grow_vertical = 2
 
 [node name="Background" type="Sprite2D" parent="."]
 show_behind_parent = true
-position = Vector2(956.5, 558)
-scale = Vector2(6.46036, 8.31169)
-texture = ExtResource("5_1xut2")
+position = Vector2(956, 428)
+scale = Vector2(1.66322, 1.80313)
+texture = ExtResource("1_atmdh")
 
 [node name="Credits" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 1320.0
-offset_top = 621.0
-offset_right = 1712.0
-offset_bottom = 796.0
+offset_left = 1352.0
+offset_top = 784.0
+offset_right = 2162.0
+offset_bottom = 1048.0
+scale = Vector2(0.546808, 0.618464)
 texture_normal = ExtResource("2_gtuxv")
 stretch_mode = 4
 script = SubResource("GDScript_opksj")
 
-[node name="Cooltext446400659424639" type="TextureRect" parent="."]
+[node name="header" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 476.0
-offset_right = 1401.0
-offset_bottom = 285.0
-texture = ExtResource("1_0uq23")
+offset_left = 280.0
+offset_top = 88.0
+offset_right = 1644.0
+offset_bottom = 216.0
+texture = ExtResource("3_3ie2y")
 expand_mode = 2
 stretch_mode = 4
 
 [node name="Start" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 443.0
-offset_top = 316.0
-offset_right = 993.0
-offset_bottom = 648.0
+offset_left = 552.0
+offset_top = 312.0
+offset_right = 1374.0
+offset_bottom = 624.0
 texture_normal = ExtResource("3_j4y7v")
 stretch_mode = 4
 script = SubResource("GDScript_mke8p")
 
 [node name="Quit" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 199.0
-offset_top = 744.0
-offset_right = 704.0
-offset_bottom = 1029.0
+offset_left = 152.0
+offset_top = 808.0
+offset_right = 935.0
+offset_bottom = 1148.0
+scale = Vector2(0.412894, 0.422018)
 texture_normal = ExtResource("4_se0wr")
 stretch_mode = 4
 script = SubResource("GDScript_ht18n")

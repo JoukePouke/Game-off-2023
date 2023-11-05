@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cwolwfh6h7ree"]
 
-[ext_resource type="Texture2D" uid="uid://ydtsal4k2pf7" path="res://Assets/images/background.jpeg" id="1_r5l87"]
+[ext_resource type="Texture2D" uid="uid://di4hoq38j24ki" path="res://Assets/images/background2.png" id="1_8m06r"]
 
 [sub_resource type="GDScript" id="GDScript_2q1wy"]
 script/source = "extends Button
@@ -30,16 +30,16 @@ grow_vertical = 2
 
 [node name="Background" type="Sprite2D" parent="."]
 show_behind_parent = true
-position = Vector2(956.5, 558)
-scale = Vector2(6.46036, 8.31169)
-texture = ExtResource("1_r5l87")
+position = Vector2(956, 428)
+scale = Vector2(1.66322, 1.80313)
+texture = ExtResource("1_8m06r")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
-offset_left = 1347.0
-offset_top = 829.0
-offset_right = 1752.0
-offset_bottom = 972.0
+offset_left = 1352.0
+offset_top = 784.0
+offset_right = 1795.0
+offset_bottom = 947.0
 theme_override_font_sizes/font_size = 49
 text = "Back"
 script = SubResource("GDScript_2q1wy")
@@ -50,6 +50,7 @@ offset_left = 204.0
 offset_top = 176.0
 offset_right = 1257.0
 offset_bottom = 1080.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 46
 text = "Developers:
 - joukepouke
