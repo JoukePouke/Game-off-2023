@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://s7f4o7aduiu1"]
+
+[ext_resource type="Script" path="res://Assets/Scenes/sound.gd" id="1_x2p8q"]
+[ext_resource type="AudioStream" uid="uid://difrkfrmt3wx3" path="res://Assets/audio/ui/sfx_ui_enter.wav" id="2_tch4h"]
+[ext_resource type="AudioStream" uid="uid://ciwrt0k36hhxq" path="res://Assets/audio/ui/sfx_ui_back.wav" id="3_6rc3v"]
+
+[node name="sound" type="Node"]
+script = ExtResource("1_x2p8q")
+
+[node name="ui_enter" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_tch4h")
+volume_db = -3.0
+
+[node name="ui_back" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6rc3v")
+volume_db = -3.0

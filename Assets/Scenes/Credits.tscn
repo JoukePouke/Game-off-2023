@@ -17,6 +17,7 @@ func _process(delta):
 
 
 func _on_pressed():
+	sound.sfx_back()
 	get_tree().change_scene_to_file(\"res://Assets/Scenes/MainMenu.tscn\")
 "
 
@@ -113,6 +114,7 @@ offset_bottom = 697.0
 color = Color(0, 0, 0, 0.133333)
 
 [node name="info" type="RichTextLabel" parent="controlsinfo area"]
+layout_mode = 0
 offset_left = 29.0
 offset_top = 144.0
 offset_right = 725.0
@@ -144,6 +146,7 @@ Quit to main menu: ESC
 "
 
 [node name="Label" type="Label" parent="controlsinfo area"]
+layout_mode = 0
 offset_left = 29.0
 offset_right = 725.0
 offset_bottom = 162.0

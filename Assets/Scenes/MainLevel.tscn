@@ -1,9 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://b0q81qutcdid3"]
+[gd_scene load_steps=17 format=3 uid="uid://b0q81qutcdid3"]
 
 [ext_resource type="Texture2D" uid="uid://bce0k4vxrcdcw" path="res://Assets/images/images.jpeg" id="1_e4j2f"]
 [ext_resource type="PackedScene" uid="uid://dgpjxoygnvyy4" path="res://Assets/simple_fpsplayer/Player.tscn" id="2_6bn0e"]
 [ext_resource type="PackedScene" uid="uid://djncyuxjk6tnm" path="res://Assets/Prefabs/box.tscn" id="3_wl8wf"]
 [ext_resource type="Texture2D" uid="uid://di4hoq38j24ki" path="res://Assets/images/background2.png" id="4_gcri5"]
+[ext_resource type="AudioStream" uid="uid://8hfvmh827yp1" path="res://Assets/audio/sfx/sfx_coin.wav" id="4_vmniw"]
+[ext_resource type="AudioStream" uid="uid://21j26eefa14d" path="res://Assets/audio/music/music_unfinished_loop.ogg" id="5_y8fxi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_04d4k"]
 albedo_texture = ExtResource("1_e4j2f")
@@ -204,6 +206,11 @@ transform = Transform3D(-1, 0, -8.74279e-08, 0, 1, 0, 8.74279e-08, 0, -1, -0.000
 disable_mode = 0
 SPEED = 15.395
 
+[node name="jump" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("4_vmniw")
+volume_db = -6.0
+bus = &"sfx"
+
 [node name="DeadTitle" type="Control" parent="."]
 visible = false
 layout_mode = 3
@@ -246,6 +253,7 @@ theme_override_font_sizes/font_size = 128
 text = "TRY AGAIN"
 
 [node name="menu" type="Button" parent="DeadTitle"]
+layout_mode = 0
 offset_left = 943.0
 offset_top = 819.0
 offset_right = 1335.0
@@ -269,6 +277,14 @@ show_behind_parent = true
 position = Vector2(956, 428)
 scale = Vector2(1.66322, 1.80313)
 texture = ExtResource("4_gcri5")
+
+[node name="music" type="Node" parent="."]
+
+[node name="music" type="AudioStreamPlayer" parent="music"]
+stream = ExtResource("5_y8fxi")
+volume_db = -9.0
+autoplay = true
+bus = &"music"
 
 [connection signal="body_entered" from="MeshInstance3D/StaticBody3D" to="DeadTitle" method="_on_body"]
 [connection signal="button_down" from="DeadTitle/Button" to="DeadTitle/Button" method="_on_button_down"]
