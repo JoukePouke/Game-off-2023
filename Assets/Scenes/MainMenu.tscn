@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://vm0t0btpxqht"]
 
 [ext_resource type="Texture2D" uid="uid://di4hoq38j24ki" path="res://Assets/images/background2.png" id="1_atmdh"]
-[ext_resource type="Texture2D" uid="uid://d0uyvygml28l1" path="res://Assets/images/credits.png" id="2_gtuxv"]
+[ext_resource type="Texture2D" uid="uid://5826hbimwk5w" path="res://Assets/images/info.png" id="2_ci56u"]
 [ext_resource type="Texture2D" uid="uid://b28k6gpej8687" path="res://Assets/images/headtext.png" id="3_3ie2y"]
 [ext_resource type="Texture2D" uid="uid://c3g3wtsiq1f4v" path="res://Assets/images/start.png" id="3_j4y7v"]
 [ext_resource type="Texture2D" uid="uid://bqaucqkqxunyt" path="res://Assets/images/quit.png" id="4_se0wr"]
@@ -20,14 +20,17 @@ func _ready():
 	# If the file didn't load, ignore it.
 	if err != OK:
 		print(\"error loading settings file, creating new settings file\")
-
+		
+		# MUST add default option
 		config.set_value(\"misc\", \"fps_counter_enabled\", false)
+		config.set_value(\"misc\", \"defaultcamera_pov\", false)
+		config.set_value(\"misc\", \"score_counter\", true)
 		config.save(\"user://settings.cfg\")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 "
 
 [sub_resource type="GDScript" id="GDScript_opksj"]
@@ -124,12 +127,12 @@ texture = ExtResource("1_atmdh")
 
 [node name="Credits" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 1344.0
+offset_left = 1400.0
 offset_top = 784.0
-offset_right = 2154.0
-offset_bottom = 1048.0
-scale = Vector2(0.546808, 0.618464)
-texture_normal = ExtResource("2_gtuxv")
+offset_right = 2128.0
+offset_bottom = 1098.0
+scale = Vector2(0.495528, 0.502241)
+texture_normal = ExtResource("2_ci56u")
 stretch_mode = 4
 script = SubResource("GDScript_opksj")
 

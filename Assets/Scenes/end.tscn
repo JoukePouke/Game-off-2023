@@ -1,4 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://dwhak1xc1kjrs"]
+[gd_scene load_steps=4 format=3 uid="uid://dwhak1xc1kjrs"]
+
+[ext_resource type="Texture2D" uid="uid://di4hoq38j24ki" path="res://Assets/images/background2.png" id="1_r12k7"]
+
+[sub_resource type="GDScript" id="GDScript_8g3sr"]
+script/source = "extends Button
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_pressed():
+	get_tree().change_scene_to_file(\"res://Assets/Scenes/MainMenu.tscn\")
+"
 
 [sub_resource type="GDScript" id="GDScript_pcgx3"]
 resource_name = "quit"
@@ -7,7 +27,9 @@ script/source = "extends Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	get_tree().quit()
+	#pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -21,12 +43,33 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.196078)
+layout_mode = 0
+offset_left = -195.0
+offset_top = -220.0
+offset_right = 2303.0
+offset_bottom = 1482.0
+texture = ExtResource("1_r12k7")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_top = 456.0
+offset_right = 1919.0
+offset_bottom = 1079.0
+theme_override_font_sizes/font_size = 89
+text = "Play again"
+script = SubResource("GDScript_8g3sr")
+
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_right = 1035.0
-offset_bottom = 374.0
-theme_override_font_sizes/font_size = 75
-text = "please reload page"
-horizontal_alignment = 3
-uppercase = true
+offset_right = 1919.0
+offset_bottom = 456.0
+theme_override_colors/font_color = Color(0.901961, 0.901961, 0.901961, 1)
+theme_override_font_sizes/font_size = 322
+text = "Quited"
+horizontal_alignment = 1
+vertical_alignment = 1
 script = SubResource("GDScript_pcgx3")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

@@ -173,10 +173,10 @@ texture = ExtResource("1_x65jr")
 
 [node name="backbtn" type="Button" parent="."]
 layout_mode = 0
-offset_left = 1352.0
+offset_left = 1400.0
 offset_top = 784.0
-offset_right = 1795.0
-offset_bottom = 947.0
+offset_right = 1761.0
+offset_bottom = 944.0
 theme_override_font_sizes/font_size = 49
 text = "Back"
 script = SubResource("GDScript_2q1wy")
@@ -283,7 +283,7 @@ offset_right = 1059.26
 offset_bottom = 565.497
 theme_override_colors/font_color = Color(0.239216, 0.239216, 0.239216, 1)
 theme_override_font_sizes/font_size = 96
-text = "Default Camera POV
+text = "Default Start Camera POV
 "
 
 [connection signal="pressed" from="backbtn" to="backbtn" method="_on_pressed"]

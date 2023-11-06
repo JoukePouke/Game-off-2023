@@ -20,7 +20,7 @@ func _on_pressed():
 	get_tree().change_scene_to_file(\"res://Assets/Scenes/MainMenu.tscn\")
 "
 
-[node name="Control" type="Control"]
+[node name="CreditsAndInfo" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -36,23 +36,31 @@ texture = ExtResource("1_8m06r")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
-offset_left = 1352.0
+offset_left = 1400.0
 offset_top = 784.0
-offset_right = 1795.0
-offset_bottom = 947.0
+offset_right = 1761.0
+offset_bottom = 942.0
 theme_override_font_sizes/font_size = 49
 text = "Back"
 script = SubResource("GDScript_2q1wy")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="credits area" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = 204.0
-offset_top = 76.0
-offset_right = 1257.0
+offset_top = 18.0
+offset_right = 1106.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.105882)
+
+[node name="credits" type="RichTextLabel" parent="credits area"]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 162.0
+offset_right = 1106.0
 offset_bottom = 1080.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 46
-text = "Developers:
+text = "
+Developers:
 - joukepouke
 - conaitus
 
@@ -86,5 +94,61 @@ Sound Composer:
 
 
 "
+
+[node name="Label" type="Label" parent="credits area"]
+layout_mode = 0
+offset_left = 53.0
+offset_right = 917.0
+offset_bottom = 162.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 98
+text = "Credits:"
+
+[node name="controlsinfo area" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 1158.0
+offset_top = 18.0
+offset_right = 1883.0
+offset_bottom = 697.0
+color = Color(0, 0, 0, 0.133333)
+
+[node name="info" type="RichTextLabel" parent="controlsinfo area"]
+offset_left = 29.0
+offset_top = 144.0
+offset_right = 725.0
+offset_bottom = 679.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 46
+text = "Left: A
+Right: D
+Jump: SPACE
+Quit to main menu: ESC
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+
+[node name="Label" type="Label" parent="controlsinfo area"]
+offset_left = 29.0
+offset_right = 725.0
+offset_bottom = 162.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 89
+text = "Controls:"
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
