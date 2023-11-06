@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://boy3d144yjmgb"]
+[gd_scene load_steps=9 format=3 uid="uid://boy3d144yjmgb"]
 
 [ext_resource type="Texture2D" uid="uid://di4hoq38j24ki" path="res://Assets/images/background2.png" id="1_x65jr"]
 [ext_resource type="Texture2D" uid="uid://37qje6sy7nq7" path="res://Assets/images/on.png" id="2_smm1i"]
@@ -71,6 +71,38 @@ func _on_toggled(button_pressed):
 		config.set_value(\"misc\", \"fps_counter_enabled\", false)
 	config.save(\"user://settings.cfg\")
 	
+"
+
+[sub_resource type="GDScript" id="GDScript_ucfli"]
+resource_name = "score"
+script/source = "extends CheckButton
+
+var config = ConfigFile.new()
+# Load data from a file.
+var err = config.load(\"user://settings.cfg\")
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	var enabled
+	for misc in config.get_sections():
+		# Fetch the data for each section.
+		enabled = config.get_value(misc, \"score_counter\")
+	
+	if enabled:
+		button_pressed = true
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_toggled(button_pressed):
+	if button_pressed:
+		config.set_value(\"misc\", \"score_counter\", true)
+	else:
+		config.set_value(\"misc\", \"score_counter\", false)
+	config.save(\"user://settings.cfg\")
 "
 
 [sub_resource type="GDScript" id="GDScript_tfg2f"]
@@ -191,6 +223,37 @@ theme_override_colors/font_color = Color(0.239216, 0.239216, 0.239216, 1)
 theme_override_font_sizes/font_size = 96
 text = "FPS Counter"
 
+[node name="scorecounter" type="Node2D" parent="settings"]
+position = Vector2(0, 132.52)
+scale = Vector2(0.376936, 0.427023)
+
+[node name="ColorRect2" type="ColorRect" parent="settings/scorecounter"]
+offset_left = 257.338
+offset_top = 435.573
+offset_right = 297.338
+offset_bottom = 475.573
+scale = Vector2(5.59338, 2.23833)
+color = Color(0, 0, 0, 0.203922)
+
+[node name="CheckButton" type="CheckButton" parent="settings/scorecounter"]
+offset_left = 273.256
+offset_top = 436.497
+offset_right = 847.256
+offset_bottom = 705.497
+scale = Vector2(0.312713, 0.34099)
+theme_override_icons/checked = ExtResource("2_smm1i")
+theme_override_icons/unchecked = ExtResource("3_ep41l")
+script = SubResource("GDScript_ucfli")
+
+[node name="Label" type="Label" parent="settings/scorecounter"]
+offset_left = 495.256
+offset_top = 414.497
+offset_right = 1059.26
+offset_bottom = 565.497
+theme_override_colors/font_color = Color(0.239216, 0.239216, 0.239216, 1)
+theme_override_font_sizes/font_size = 96
+text = "Show Score"
+
 [node name="defaultcamera" type="Node2D" parent="settings"]
 position = Vector2(0, 65.245)
 scale = Vector2(0.376936, 0.427023)
@@ -225,4 +288,5 @@ text = "Default Camera POV
 
 [connection signal="pressed" from="backbtn" to="backbtn" method="_on_pressed"]
 [connection signal="toggled" from="settings/fpscounter/CheckButton" to="settings/fpscounter/CheckButton" method="_on_toggled"]
+[connection signal="toggled" from="settings/scorecounter/CheckButton" to="settings/scorecounter/CheckButton" method="_on_toggled"]
 [connection signal="toggled" from="settings/defaultcamera/CheckButton" to="settings/defaultcamera/CheckButton" method="_on_toggled"]

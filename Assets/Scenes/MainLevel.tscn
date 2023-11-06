@@ -1,35 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://b0q81qutcdid3"]
+[gd_scene load_steps=14 format=3 uid="uid://b0q81qutcdid3"]
 
 [ext_resource type="Texture2D" uid="uid://bce0k4vxrcdcw" path="res://Assets/images/images.jpeg" id="1_e4j2f"]
 [ext_resource type="PackedScene" uid="uid://dgpjxoygnvyy4" path="res://Assets/simple_fpsplayer/Player.tscn" id="2_6bn0e"]
 [ext_resource type="PackedScene" uid="uid://djncyuxjk6tnm" path="res://Assets/Prefabs/box.tscn" id="3_wl8wf"]
+[ext_resource type="Texture2D" uid="uid://di4hoq38j24ki" path="res://Assets/images/background2.png" id="4_gcri5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_04d4k"]
 albedo_texture = ExtResource("1_e4j2f")
 
 [sub_resource type="BoxMesh" id="BoxMesh_d6ydj"]
-
-[sub_resource type="GDScript" id="GDScript_301u6"]
-resource_name = "water"
-script/source = "extends MeshInstance3D
-@onready
-var player = get_node(\"../Player\")
-@onready
-var respawn = get_node(\"../respawn\")
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
-func _on_body(body):
-	player.transform = respawn.transform
-	
-"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_utaer"]
 
@@ -58,7 +37,7 @@ func _ready():
 	
 	for misc in config.get_sections():
 		# Fetch the data for each section.
-		enabled = config.get_value(misc, \"defaultcamera_pov\")
+		enabled = config.get_value(misc, \"fps_counter_enabled\")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -67,13 +46,74 @@ func _process(delta):
 		set_text(\"FPS: \" + str(Engine.get_frames_per_second()))
 "
 
+[sub_resource type="GDScript" id="GDScript_dj415"]
+resource_name = "score"
+script/source = "extends Label
+
+
+var enabled
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	
+	var config = ConfigFile.new()
+	# Load data from a file.
+	var err = config.load(\"user://settings.cfg\")
+	
+	for misc in config.get_sections():
+		# Fetch the data for each section.
+		enabled = config.get_value(misc, \"score_counter\")
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if enabled:
+		set_text(\"SCORE: \" + str($/root/MainLevel/Player.score) )
+"
+
+[sub_resource type="GDScript" id="GDScript_3iii3"]
+resource_name = "die"
+script/source = "extends Control
+
+@onready var player = get_node(\"../Player\")
+@onready var trespawn = get_node(\"../respawn\")
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if visible:
+		player.position = trespawn.position
+
+
+func _on_body(body):
+	self.visible = true
+
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+	
+
+
+func respawn():
+	get_tree().paused = false
+	visible = false
+
+
+
+
+func quit():
+	get_tree().change_scene_to_file(\"res://Assets/Scenes/end.tscn\")
+"
+
 [node name="MainLevel" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(24.8783, 0, 0, 0, 0.251515, 0, 0, 0, 2526.37, -0.256853, -1.19209e-07, -0.0319362)
 material_override = SubResource("StandardMaterial3D_04d4k")
 mesh = SubResource("BoxMesh_d6ydj")
-script = SubResource("GDScript_301u6")
 
 [node name="StaticBody3D" type="Area3D" parent="MeshInstance3D"]
 
@@ -92,7 +132,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 6.0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_v1o86")
 
-[node name="Boxes" type="Node" parent="."]
+[node name="Boxes" type="Node3D" parent="."]
 
 [node name="Box" parent="Boxes" instance=ExtResource("3_wl8wf")]
 transform = Transform3D(-1, 0, 3.83795e-07, 0, 1, 0, -8.74228e-08, 0, -4.3901, -0.0102298, 5.01093, 1.19429)
@@ -125,9 +165,74 @@ theme_override_font_sizes/font_size = 18
 text = "   "
 script = SubResource("GDScript_cvst8")
 
+[node name="score counter" type="Label" parent="."]
+offset_left = 8.0
+offset_top = 110.0
+offset_right = 348.0
+offset_bottom = 164.0
+scale = Vector2(1.28, 1.68)
+theme_override_font_sizes/font_size = 32
+script = SubResource("GDScript_dj415")
+
 [node name="Player" parent="." instance=ExtResource("2_6bn0e")]
 transform = Transform3D(-1, 0, -8.74279e-08, 0, 1, 0, 8.74279e-08, 0, -1, -0.000832997, 6.03648, -0.305545)
 disable_mode = 0
 SPEED = 15.395
 
-[connection signal="body_entered" from="MeshInstance3D/StaticBody3D" to="MeshInstance3D" method="_on_body"]
+[node name="Node2D" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+script = SubResource("GDScript_3iii3")
+
+[node name="Label" type="Label" parent="Node2D"]
+layout_mode = 0
+offset_left = 315.0
+offset_top = 93.0
+offset_right = 1729.0
+offset_bottom = 505.0
+scale = Vector2(1, 1.05918)
+theme_override_colors/font_color = Color(0.737255, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.807843, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 300
+text = "YOU DIED"
+
+[node name="Label2" type="Label" parent="Node2D"]
+layout_mode = 0
+offset_left = 678.0
+offset_top = 518.0
+offset_right = 1405.0
+offset_bottom = 726.0
+theme_override_colors/font_color = Color(0, 0.65098, 0, 1)
+theme_override_font_sizes/font_size = 150
+text = "SCORE: 56"
+
+[node name="Button" type="Button" parent="Node2D"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 814.0
+offset_right = 777.0
+offset_bottom = 997.0
+theme_override_font_sizes/font_size = 128
+text = "TRY AGAIN"
+
+[node name="Button2" type="Button" parent="Node2D"]
+layout_mode = 0
+offset_left = 1097.0
+offset_top = 819.0
+offset_right = 1770.0
+offset_bottom = 1002.0
+theme_override_font_sizes/font_size = 128
+text = "QUIT"
+
+[node name="Background" type="Sprite2D" parent="Node2D"]
+show_behind_parent = true
+position = Vector2(956, 428)
+scale = Vector2(1.66322, 1.80313)
+texture = ExtResource("4_gcri5")
+
+[connection signal="body_entered" from="MeshInstance3D/StaticBody3D" to="Node2D" method="_on_body"]
+[connection signal="pressed" from="Node2D/Button" to="Node2D" method="respawn"]
+[connection signal="pressed" from="Node2D/Button2" to="Node2D" method="quit"]

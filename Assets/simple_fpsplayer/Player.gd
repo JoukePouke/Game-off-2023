@@ -21,6 +21,8 @@ var dir = Vector3.ZERO
 var flashlight
 @onready var cameras = [camera1, camera2, camera3]
 var activecamera
+var prevpos = -10
+@export var score = 0
 func _ready():
 	rotation_helper = $rotation_helper/rot
 	var enabled
@@ -106,3 +108,8 @@ func _physics_process(delta):
 		velocity.x = velocity.x * SPRINT_MULT
 	move_and_slide()
 	velocity.x = 0
+	if (position.z - prevpos) > 1:
+		prevpos = position.z
+		score += 1
+	
+	
