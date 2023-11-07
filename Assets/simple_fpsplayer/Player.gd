@@ -66,7 +66,7 @@ func _input(event):
 			cameras[activecamera].current = true
 		if event.pressed and event.keycode == KEY_ESCAPE:
 			get_tree().change_scene_to_file("res://Assets/Scenes/MainMenu.tscn")
-
+var highscore = 0
 func _physics_process(delta):
 	var moving = false
 	
@@ -112,5 +112,7 @@ func _physics_process(delta):
 	if (position.z - prevpos) > 1:
 		prevpos = position.z
 		score += 1
+		if score > highscore:
+			highscore = score
 	
 	

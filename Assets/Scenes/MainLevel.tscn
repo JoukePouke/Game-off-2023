@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b0q81qutcdid3"]
+[gd_scene load_steps=18 format=3 uid="uid://b0q81qutcdid3"]
 
 [ext_resource type="Texture2D" uid="uid://bce0k4vxrcdcw" path="res://Assets/images/images.jpeg" id="1_e4j2f"]
 [ext_resource type="PackedScene" uid="uid://dgpjxoygnvyy4" path="res://Assets/simple_fpsplayer/Player.tscn" id="2_6bn0e"]
@@ -133,6 +133,21 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	set_text(\"SCORE: \" + str($/root/MainLevel/Player.score) )
+"
+
+[sub_resource type="GDScript" id="GDScript_jlgxg"]
+resource_name = "ss"
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	text = \"THATS ONLY \" + str($/root/MainLevel/Player.highscore - $/root/MainLevel/Player.score) + \" AWAY FROM YOUR HIGHSCORE \" + str($/root/MainLevel/Player.highscore)
 "
 
 [node name="MainLevel" type="Node3D"]
@@ -277,6 +292,16 @@ show_behind_parent = true
 position = Vector2(956, 428)
 scale = Vector2(1.66322, 1.80313)
 texture = ExtResource("4_gcri5")
+
+[node name="Label2" type="Label" parent="DeadTitle"]
+layout_mode = 0
+offset_left = 374.0
+offset_top = 726.0
+offset_right = 1601.0
+offset_bottom = 798.0
+theme_override_font_sizes/font_size = 50
+text = "THATS ONLY XX AWAY FROM YOUR HIGH SCORE XX"
+script = SubResource("GDScript_jlgxg")
 
 [node name="music" type="Node" parent="."]
 
