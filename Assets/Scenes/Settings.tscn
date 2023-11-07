@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://boy3d144yjmgb"]
+[gd_scene load_steps=10 format=3 uid="uid://boy3d144yjmgb"]
 
 [ext_resource type="Texture2D" uid="uid://di4hoq38j24ki" path="res://Assets/images/background2.png" id="1_x65jr"]
 [ext_resource type="Texture2D" uid="uid://37qje6sy7nq7" path="res://Assets/images/on.png" id="2_smm1i"]
@@ -139,6 +139,27 @@ func _on_toggled(button_pressed):
 		config.set_value(\"misc\", \"defaultcamera_pov\", true)
 	else:
 		config.set_value(\"misc\", \"defaultcamera_pov\", false)
+	config.save(\"user://settings.cfg\")
+"
+
+[sub_resource type="GDScript" id="GDScript_ahhoc"]
+resource_name = "resethighscore"
+script/source = "extends Button
+
+
+var config = ConfigFile.new()
+# Load data from a file.
+var _err = config.load(\"user://settings.cfg\")
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass
+func _process(delta):
+	pass
+
+
+func _on_pressed():
+	config.set_value(\"misc\", \"high_score\", 0)
 	config.save(\"user://settings.cfg\")
 "
 
@@ -290,7 +311,21 @@ theme_override_font_sizes/font_size = 96
 text = "Default Start Camera POV
 "
 
+[node name="reset highscore" type="Node2D" parent="settings"]
+position = Vector2(0, 295.24)
+scale = Vector2(0.376936, 0.427023)
+
+[node name="Button" type="Button" parent="settings/reset highscore"]
+offset_left = 294.48
+offset_top = 898.687
+offset_right = 1542.48
+offset_bottom = 1043.69
+theme_override_font_sizes/font_size = 100
+text = "reset high score? no undo"
+script = SubResource("GDScript_ahhoc")
+
 [connection signal="pressed" from="backbtn" to="backbtn" method="_on_pressed"]
 [connection signal="toggled" from="settings/fpscounter/CheckButton" to="settings/fpscounter/CheckButton" method="_on_toggled"]
 [connection signal="toggled" from="settings/scorecounter/CheckButton" to="settings/scorecounter/CheckButton" method="_on_toggled"]
 [connection signal="toggled" from="settings/defaultcamera/CheckButton" to="settings/defaultcamera/CheckButton" method="_on_toggled"]
+[connection signal="pressed" from="settings/reset highscore/Button" to="settings/reset highscore/Button" method="_on_pressed"]

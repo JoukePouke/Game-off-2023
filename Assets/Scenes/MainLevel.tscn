@@ -35,7 +35,7 @@ func _ready():
 	
 	var config = ConfigFile.new()
 	# Load data from a file.
-	var err = config.load(\"user://settings.cfg\")
+	var _err = config.load(\"user://settings.cfg\")
 	
 	for misc in config.get_sections():
 		# Fetch the data for each section.
@@ -43,7 +43,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if enabled:
 		set_text(\"FPS: \" + str(Engine.get_frames_per_second()))
 
@@ -62,7 +62,7 @@ func _ready():
 	
 	var config = ConfigFile.new()
 	# Load data from a file.
-	var err = config.load(\"user://settings.cfg\")
+	var _err = config.load(\"user://settings.cfg\")
 	
 	for misc in config.get_sections():
 		# Fetch the data for each section.
@@ -73,7 +73,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if enabled:
 		set_text(\"SCORE: \" + str($/root/MainLevel/Player.score) )
 "
@@ -90,12 +90,12 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if visible:
 		player.position = trespawn.position
 
 # if dead
-func _on_body(body):
+func _on_body(_body):
 	self.visible = true
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -106,18 +106,29 @@ func _on_body(body):
 
 # if trying again
 func respawn():
-	get_tree().paused = false
 	visible = false
-	
+	player.config.set_value(\"misc\", \"high_score\", player.highscore)
+	player.score = 0
+	player.prevpos = 0
+	player.config.save(\"user://settings.cfg\")
 	get_tree().change_scene_to_file(\"res://Assets/Scenes/MainLevel.tscn\")
 
 
 
 
+
 func quit():
+	player.config.set_value(\"misc\", \"high_score\", player.highscore)
+	player.score = 0
+	player.prevpos = 0
+	player.config.save(\"user://settings.cfg\")
 	get_tree().change_scene_to_file(\"res://Assets/Scenes/end.tscn\")
 
 func _on_menu_pressed():
+	player.config.set_value(\"misc\", \"high_score\", player.highscore)
+	player.score = 0
+	player.prevpos = 0
+	player.config.save(\"user://settings.cfg\")
 	get_tree().change_scene_to_file(\"res://Assets/Scenes/MainMenu.tscn\")
 "
 
@@ -131,7 +142,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	set_text(\"SCORE: \" + str($/root/MainLevel/Player.score) )
 "
 
@@ -146,8 +157,16 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	text = \"THATS ONLY \" + str($/root/MainLevel/Player.highscore - $/root/MainLevel/Player.score) + \" AWAY FROM YOUR HIGHSCORE \" + str($/root/MainLevel/Player.highscore)
+func _process(_delta):
+	var scorediff
+	scorediff = $/root/MainLevel/Player.highscore - $/root/MainLevel/Player.score
+	if scorediff <= 0:
+		text = \"NEW HIGHSCORE: \" + str($/root/MainLevel/Player.highscore) + \"!!!\"
+	elif scorediff < 40:
+		text = \"Thats only \" + str(scorediff) + \" away from your high score of \" + str($/root/MainLevel/Player.highscore) + \"!\"
+	else:
+		text = \"Oh no! you are not even close to your highscore of \" + str($/root/MainLevel/Player.highscore)
+	
 "
 
 [node name="MainLevel" type="Node3D"]
@@ -312,7 +331,6 @@ autoplay = true
 bus = &"music"
 
 [connection signal="body_entered" from="MeshInstance3D/StaticBody3D" to="DeadTitle" method="_on_body"]
-[connection signal="button_down" from="DeadTitle/Button" to="DeadTitle/Button" method="_on_button_down"]
 [connection signal="pressed" from="DeadTitle/Button" to="DeadTitle" method="respawn"]
 [connection signal="pressed" from="DeadTitle/menu" to="DeadTitle" method="_on_menu_pressed"]
 [connection signal="pressed" from="DeadTitle/quit" to="DeadTitle" method="quit"]

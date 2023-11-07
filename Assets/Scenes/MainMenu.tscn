@@ -18,18 +18,19 @@ func _ready():
 	var err = config.load(\"user://settings.cfg\")
 
 	# If the file didn't load, ignore it.
-	if err != OK:
+	if err != OK or config.get_value(\"misc\", \"high_score\") == null:
 		print(\"error loading settings file, creating new settings file\")
 		
 		# MUST add default option
 		config.set_value(\"misc\", \"fps_counter_enabled\", false)
 		config.set_value(\"misc\", \"defaultcamera_pov\", false)
 		config.set_value(\"misc\", \"score_counter\", true)
+		config.set_value(\"misc\", \"high_score\", 0)
 		config.save(\"user://settings.cfg\")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 "
 
@@ -44,7 +45,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 
@@ -64,7 +65,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 
@@ -84,7 +85,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 
@@ -103,7 +104,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 

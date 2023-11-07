@@ -22,16 +22,23 @@ var flashlight
 @onready var cameras = [camera1, camera2, camera3]
 var activecamera
 var prevpos = -10
+var highscore
+var config
 @export var score = 0
 func _ready():
 	rotation_helper = $rotation_helper/rot
 	var enabled
-	var config = ConfigFile.new()
+	config = ConfigFile.new()
 	# Load data from a file.
 	var err = config.load("user://settings.cfg")
-	for misc in config.get_sections():
-		# Fetch the data for each section.
-		enabled = config.get_value(misc, "defaultcamera_pov")
+	if err > 0:
+		print("alarum alarum!")
+
+	enabled = config.get_value("misc", "defaultcamera_pov")
+
+
+	highscore = config.get_value("misc", "high_score")
+	print("high score =" + str(highscore))
 	if enabled:
 		print("pov boy")
 		activecamera = 0
@@ -66,9 +73,7 @@ func _input(event):
 			cameras[activecamera].current = true
 		if event.pressed and event.keycode == KEY_ESCAPE:
 			get_tree().change_scene_to_file("res://Assets/Scenes/MainMenu.tscn")
-var highscore = 0
 func _physics_process(delta):
-	var moving = false
 	
 	# Add the gravity. Pulls value from project settings.
 
@@ -81,14 +86,6 @@ func _physics_process(delta):
 		$jump.play()
 	
 	# This just controls acceleration. Don't touch it.
-	var accel
-	if dir.dot(velocity) > 0:
-		accel = ACCEL
-		moving = true
-	else:
-		accel = DEACCEL
-		moving = true
-
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with a custom keymap depending on your control scheme. These strings default to the arrow keys layout.
@@ -112,7 +109,10 @@ func _physics_process(delta):
 	if (position.z - prevpos) > 1:
 		prevpos = position.z
 		score += 1
+
 		if score > highscore:
 			highscore = score
+		else:
+			print("nope")
 	
 	
