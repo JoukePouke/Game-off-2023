@@ -1,24 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dwhak1xc1kjrs"]
+[gd_scene load_steps=3 format=3 uid="uid://dwhak1xc1kjrs"]
 
 [ext_resource type="Texture2D" uid="uid://di4hoq38j24ki" path="res://Assets/images/background2.png" id="1_r12k7"]
-
-[sub_resource type="GDScript" id="GDScript_8g3sr"]
-script/source = "extends Button
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
-func _on_pressed():
-	get_tree().change_scene_to_file(\"res://Assets/Scenes/MainMenu.tscn\")
-"
 
 [sub_resource type="GDScript" id="GDScript_pcgx3"]
 resource_name = "quit"
@@ -52,15 +34,6 @@ offset_right = 2303.0
 offset_bottom = 1482.0
 texture = ExtResource("1_r12k7")
 
-[node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_top = 456.0
-offset_right = 1919.0
-offset_bottom = 1079.0
-theme_override_font_sizes/font_size = 89
-text = "Play again"
-script = SubResource("GDScript_8g3sr")
-
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
 offset_right = 1919.0
@@ -72,4 +45,11 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = SubResource("GDScript_pcgx3")
 
-[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 205.0
+offset_top = 633.0
+offset_right = 1842.0
+offset_bottom = 841.0
+theme_override_font_sizes/font_size = 150
+text = "Please reload the page"
