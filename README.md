@@ -22,7 +22,7 @@ Welcome to the README for "Infinite Runner"! This document will provide you with
 - **Title**: Infinite Runner
 - **Version**: 0.1.0 (Alpha)
 - **Developed with**: Godot Engine 4.1.2
-- - **Itch.io page**: https://joukepouk.itch.io/infinite-runner
+- **Itch.io page**: https://joukepouk.itch.io/infinite-runner
 - **Genre**: [unknown]
 - **Perspective**: Second-person, Side-view, (Pov)
 - **Platform**: [unknown]
