@@ -49,6 +49,7 @@ func _process(delta):
 
 
 func _on_pressed():
+	sound.sfx_enter()
 	get_tree().change_scene_to_file(\"res://Assets/Scenes/Credits.tscn\")
 "
 
@@ -68,6 +69,7 @@ func _process(delta):
 
 
 func _on_pressed():
+	sound.sfx_enter()
 	get_tree().change_scene_to_file(\"res://Assets/Scenes/MainLevel.tscn\")
 "
 
@@ -107,6 +109,7 @@ func _process(delta):
 
 
 func _on_pressed():
+	sound.sfx_enter()
 	get_tree().change_scene_to_file(\"res://Assets/Scenes/Settings.tscn\")
 "
 
