@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://s7f4o7aduiu1"]
+[gd_scene load_steps=8 format=3 uid="uid://s7f4o7aduiu1"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/sound.gd" id="1_x2p8q"]
 [ext_resource type="AudioStream" uid="uid://difrkfrmt3wx3" path="res://Assets/audio/ui/sfx_ui_enter.wav" id="2_tch4h"]
 [ext_resource type="AudioStream" uid="uid://ciwrt0k36hhxq" path="res://Assets/audio/ui/sfx_ui_back.wav" id="3_6rc3v"]
+[ext_resource type="AudioStream" uid="uid://sk21g7je6cp4" path="res://Assets/audio/music/music_menu_loop.ogg" id="4_yr5xe"]
+[ext_resource type="AudioStream" uid="uid://nyjy6x1x35sw" path="res://Assets/audio/music/music_level_loop.ogg" id="5_21irn"]
+[ext_resource type="AudioStream" uid="uid://c0joqihuagvgk" path="res://Assets/audio/stingers/stinger_death_loop.ogg" id="6_kgc8u"]
+[ext_resource type="AudioStream" uid="uid://dly8er32flep2" path="res://Assets/audio/stingers/stinger_gameover.ogg" id="6_r5hjn"]
 
 [node name="sound" type="Node"]
 script = ExtResource("1_x2p8q")
@@ -14,3 +18,20 @@ volume_db = -3.0
 [node name="ui_back" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_6rc3v")
 volume_db = -3.0
+
+[node name="music_menu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_yr5xe")
+volume_db = -6.0
+bus = &"music"
+
+[node name="music_level" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_21irn")
+volume_db = -6.0
+
+[node name="stinger_deathloop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_kgc8u")
+volume_db = -6.0
+
+[node name="stinger_death_oneshot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_r5hjn")
+volume_db = -6.0
