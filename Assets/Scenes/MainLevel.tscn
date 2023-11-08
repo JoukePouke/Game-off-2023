@@ -1,11 +1,12 @@
-[gd_scene load_steps=18 format=3 uid="uid://b0q81qutcdid3"]
+[gd_scene load_steps=19 format=3 uid="uid://b0q81qutcdid3"]
 
 [ext_resource type="Texture2D" uid="uid://bce0k4vxrcdcw" path="res://Assets/images/images.jpeg" id="1_e4j2f"]
+[ext_resource type="Script" path="res://Assets/Scripts/generation.gd" id="1_jj38v"]
 [ext_resource type="PackedScene" uid="uid://dgpjxoygnvyy4" path="res://Assets/simple_fpsplayer/Player.tscn" id="2_6bn0e"]
-[ext_resource type="PackedScene" uid="uid://djncyuxjk6tnm" path="res://Assets/Prefabs/box.tscn" id="3_wl8wf"]
 [ext_resource type="Texture2D" uid="uid://di4hoq38j24ki" path="res://Assets/images/background2.png" id="4_gcri5"]
 [ext_resource type="AudioStream" uid="uid://8hfvmh827yp1" path="res://Assets/audio/sfx/sfx_coin.wav" id="4_vmniw"]
 [ext_resource type="AudioStream" uid="uid://21j26eefa14d" path="res://Assets/audio/music/music_unfinished_loop.ogg" id="5_y8fxi"]
+[ext_resource type="PackedScene" uid="uid://cf5tw6macb23" path="res://Assets/Prefabs/start.tscn" id="7_ti5s2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_04d4k"]
 albedo_texture = ExtResource("1_e4j2f")
@@ -170,6 +171,7 @@ func _process(_delta):
 "
 
 [node name="MainLevel" type="Node3D"]
+script = ExtResource("1_jj38v")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(24.8783, 0, 0, 0, 0.251515, 0, 0, 0, 2526.37, -0.256853, -1.19209e-07, -0.0319362)
@@ -192,30 +194,6 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 6.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_v1o86")
-
-[node name="Boxes" type="Node3D" parent="."]
-
-[node name="Box" parent="Boxes" instance=ExtResource("3_wl8wf")]
-transform = Transform3D(-1, 0, 3.83795e-07, 0, 1, 0, -8.74228e-08, 0, -4.3901, -0.0102298, 5.01093, 1.19429)
-skeleton = NodePath("../..")
-
-[node name="Box2" parent="Boxes" instance=ExtResource("3_wl8wf")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.222118, 5.00518, 4.87936)
-
-[node name="Box3" parent="Boxes" instance=ExtResource("3_wl8wf")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1.24782, 5.00518, 6.65647)
-
-[node name="Box4" parent="Boxes" instance=ExtResource("3_wl8wf")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.183103, 5.41938, 8.15314)
-
-[node name="Box5" parent="Boxes" instance=ExtResource("3_wl8wf")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.260281, 6.04752, 9.35606)
-
-[node name="Box6" parent="Boxes" instance=ExtResource("3_wl8wf")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.38639, 5.4272, 10.7971)
-
-[node name="Box7" parent="Boxes" instance=ExtResource("3_wl8wf")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.43123, 5.33346, 13.0955)
 
 [node name="FPScounter" type="Label" parent="."]
 offset_left = 11.0
@@ -330,7 +308,11 @@ volume_db = -9.0
 autoplay = true
 bus = &"music"
 
+[node name="level" parent="." instance=ExtResource("7_ti5s2")]
+
 [connection signal="body_entered" from="MeshInstance3D/StaticBody3D" to="DeadTitle" method="_on_body"]
 [connection signal="pressed" from="DeadTitle/Button" to="DeadTitle" method="respawn"]
 [connection signal="pressed" from="DeadTitle/menu" to="DeadTitle" method="_on_menu_pressed"]
 [connection signal="pressed" from="DeadTitle/quit" to="DeadTitle" method="quit"]
+
+[editable path="level"]
