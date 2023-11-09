@@ -1,11 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://b0q81qutcdid3"]
+[gd_scene load_steps=18 format=3 uid="uid://b0q81qutcdid3"]
 
 [ext_resource type="Texture2D" uid="uid://bce0k4vxrcdcw" path="res://Assets/images/images.jpeg" id="1_e4j2f"]
 [ext_resource type="Script" path="res://Assets/Scripts/generation.gd" id="1_jj38v"]
 [ext_resource type="PackedScene" uid="uid://dgpjxoygnvyy4" path="res://Assets/simple_fpsplayer/Player.tscn" id="2_6bn0e"]
 [ext_resource type="Texture2D" uid="uid://di4hoq38j24ki" path="res://Assets/images/background2.png" id="4_gcri5"]
 [ext_resource type="AudioStream" uid="uid://8hfvmh827yp1" path="res://Assets/audio/sfx/sfx_coin.wav" id="4_vmniw"]
-[ext_resource type="AudioStream" uid="uid://21j26eefa14d" path="res://Assets/audio/music/music_unfinished_loop.ogg" id="5_y8fxi"]
 [ext_resource type="PackedScene" uid="uid://cf5tw6macb23" path="res://Assets/Prefabs/start.tscn" id="7_ti5s2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_04d4k"]
@@ -87,8 +86,7 @@ script/source = "extends Control
 @onready var trespawn = get_node(\"../respawn\")
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -97,6 +95,8 @@ func _process(_delta):
 
 # if dead
 func _on_body(_body):
+	sound.music_level_stop()
+	sound.stinger_gameover_start()
 	self.visible = true
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -107,6 +107,7 @@ func _on_body(_body):
 
 # if trying again
 func respawn():
+	sound.stinger_gameover_stop()
 	visible = false
 	player.config.set_value(\"misc\", \"high_score\", player.highscore)
 	player.score = 0
@@ -299,14 +300,6 @@ offset_bottom = 798.0
 theme_override_font_sizes/font_size = 50
 text = "THATS ONLY XX AWAY FROM YOUR HIGH SCORE XX"
 script = SubResource("GDScript_jlgxg")
-
-[node name="music" type="Node" parent="."]
-
-[node name="music" type="AudioStreamPlayer" parent="music"]
-stream = ExtResource("5_y8fxi")
-volume_db = -9.0
-autoplay = true
-bus = &"music"
 
 [node name="level" parent="." instance=ExtResource("7_ti5s2")]
 

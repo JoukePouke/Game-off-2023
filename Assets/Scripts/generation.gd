@@ -10,6 +10,7 @@ func _ready():
 	choose_level()
 	choose_level()
 	choose_level()
+	sound.music_level_start()
 
 func choose_level():
 #	var num = rand.randi() % 1
