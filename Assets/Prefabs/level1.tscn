@@ -3,7 +3,7 @@
 [node name="level" type="Node3D"]
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.699, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
 metadata/end = Vector3(0, 0, 0)
 metadata/begin = Vector3(0, 0, 0)
 

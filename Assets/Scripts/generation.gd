@@ -1,7 +1,7 @@
 extends Node3D
 
 @onready var oldend = $level/end.position
-@onready var newstart = oldend + Vector3(oldend.x, oldend.y, oldend.z + 5)
+@onready var newstart = oldend + Vector3(oldend.x, oldend.y, oldend.z + 2)
 @onready var levels = [preload("res://Assets/Prefabs/level1.tscn")]
 var delt = 2
 var rand = RandomNumberGenerator.new()
@@ -18,6 +18,8 @@ func choose_level():
 	lev.position = newstart
 	add_child(lev)
 	print("new lev!")
+	oldend = lev.get_node("level").position
+	newstart = oldend + Vector3(oldend.x, oldend.y, oldend.z + 2)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
