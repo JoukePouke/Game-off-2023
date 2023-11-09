@@ -17,6 +17,11 @@ func _ready():
 	# Load data from a file.
 	var err = config.load(\"user://settings.cfg\")
 
+	#play menu music and stop other music if playing
+	sound.music_level_stop()
+	sound.stinger_gameover_stop()
+	sound.music_menu_start()
+
 	# If the file didn't load, ignore it.
 	if err != OK or config.get_value(\"misc\", \"high_score\") == null:
 		print(\"error loading settings file, creating new settings file\")
@@ -70,6 +75,7 @@ func _process(_delta):
 
 
 func _on_pressed():
+	sound.music_menu_stop()
 	sound.sfx_enter()
 	get_tree().change_scene_to_file(\"res://Assets/Scenes/MainLevel.tscn\")
 "
