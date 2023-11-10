@@ -1,6 +1,15 @@
-[gd_scene format=3 uid="uid://b0gp3f6l7kcvw"]
+[gd_scene load_steps=2 format=3 uid="uid://b0gp3f6l7kcvw"]
+
+[sub_resource type="GDScript" id="GDScript_bq1kv"]
+resource_name = "lev"
+script/source = "extends Node3D
+
+var beginadd = 0
+var endadd = 4.7
+"
 
 [node name="level" type="Node3D"]
+script = SubResource("GDScript_bq1kv")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 use_collision = true
@@ -9,20 +18,5 @@ metadata/begin = Vector3(0, 0, 0)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.01953)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.13673)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.14195)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.25525)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.3122)
-
 [node name="end" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.561721, 10.9129)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.561721, 0.278794)
