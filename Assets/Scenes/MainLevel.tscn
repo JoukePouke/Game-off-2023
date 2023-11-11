@@ -175,7 +175,7 @@ func _process(_delta):
 script = ExtResource("1_jj38v")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(24.8783, 0, 0, 0, 0.251515, 0, 0, 0, 2526.37, -0.256853, -1.19209e-07, -0.0319362)
+transform = Transform3D(5447.26, 0, 0, 0, 0.251515, 0, 0, 0, 2526.37, -0.256853, -1.19209e-07, -0.0319362)
 material_override = SubResource("StandardMaterial3D_04d4k")
 mesh = SubResource("BoxMesh_d6ydj")
 
