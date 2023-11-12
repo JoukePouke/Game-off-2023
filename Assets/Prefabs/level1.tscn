@@ -6,12 +6,16 @@ script/source = "extends Node3D
 
 var beginadd = 0
 var endadd = 4.7
+func scaleq(amount):
+	$CSGCombiner3D.scale = $CSGCombiner3D.scale  * Vector3(1 + amount, 1 - amount, 1 + amount)
+
 "
 
 [node name="level" type="Node3D"]
 script = SubResource("GDScript_bq1kv")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 use_collision = true
 metadata/end = Vector3(0, 0, 0)
 metadata/begin = Vector3(0, 0, 0)

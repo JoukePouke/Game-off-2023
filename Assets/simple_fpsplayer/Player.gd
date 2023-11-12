@@ -73,6 +73,8 @@ func _input(event):
 			cameras[activecamera].current = true
 		if event.pressed and event.keycode == KEY_ESCAPE:
 			get_tree().change_scene_to_file("res://Assets/Scenes/MainMenu.tscn")
+		if event.pressed and event.keycode == KEY_R:
+			get_tree().change_scene_to_file("res://Assets/Scenes/MainLevel.tscn")
 func _physics_process(delta):
 	
 	# Add the gravity. Pulls value from project settings.
