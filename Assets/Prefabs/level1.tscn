@@ -1,26 +1,28 @@
 [gd_scene load_steps=2 format=3 uid="uid://b0gp3f6l7kcvw"]
 
-[sub_resource type="GDScript" id="GDScript_bq1kv"]
+[sub_resource type="GDScript" id="GDScript_siufb"]
 resource_name = "lev"
 script/source = "extends Node3D
-
 var beginadd = 0
-var endadd = 4.7
-func scaleq(amount):
-	$CSGCombiner3D.scale = $CSGCombiner3D.scale  * Vector3(1 + amount, 1 - amount, 1 + amount)
+var endadd = 7
 
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func scaleq(amount):
+	$CSGCombiner3D.scale *= Vector3(1 + amount, 1 - amount, 1 + amount)
 "
 
 [node name="level" type="Node3D"]
-script = SubResource("GDScript_bq1kv")
+script = SubResource("GDScript_siufb")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 use_collision = true
 metadata/end = Vector3(0, 0, 0)
 metadata/begin = Vector3(0, 0, 0)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
-
-[node name="end" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.561721, 0.278794)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 4.78271, 0, 0, 2.40042)
