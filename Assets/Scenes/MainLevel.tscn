@@ -1,14 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://b0q81qutcdid3"]
+[gd_scene load_steps=17 format=3 uid="uid://b0q81qutcdid3"]
 
-[ext_resource type="Texture2D" uid="uid://bce0k4vxrcdcw" path="res://Assets/images/images.jpeg" id="1_e4j2f"]
 [ext_resource type="Script" path="res://Assets/Scripts/generation.gd" id="1_jj38v"]
 [ext_resource type="PackedScene" uid="uid://dgpjxoygnvyy4" path="res://Assets/simple_fpsplayer/Player.tscn" id="2_6bn0e"]
 [ext_resource type="Texture2D" uid="uid://di4hoq38j24ki" path="res://Assets/images/background2.png" id="4_gcri5"]
 [ext_resource type="AudioStream" uid="uid://8hfvmh827yp1" path="res://Assets/audio/sfx/sfx_coin.wav" id="4_vmniw"]
 [ext_resource type="PackedScene" uid="uid://cf5tw6macb23" path="res://Assets/Prefabs/start.tscn" id="7_ti5s2"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_04d4k"]
-albedo_texture = ExtResource("1_e4j2f")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0mg67"]
+albedo_color = Color(0, 1, 1, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_d6ydj"]
 
@@ -176,7 +175,7 @@ script = ExtResource("1_jj38v")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(115655, 0, 0, 0, 0.251515, 0, 0, 0, 891510, -0.256853, -1.19209e-07, -0.0319362)
-material_override = SubResource("StandardMaterial3D_04d4k")
+material_override = SubResource("StandardMaterial3D_0mg67")
 mesh = SubResource("BoxMesh_d6ydj")
 
 [node name="StaticBody3D" type="Area3D" parent="MeshInstance3D"]
