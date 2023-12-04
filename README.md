@@ -78,6 +78,3 @@ We welcome contributions from the community. If you want to contribute to the de
 
 "Infinite Runner" is licensed under the [MIT License](LICENSE). You can find the full text of the license in the [LICENSE](LICENSE) file.
 
----
-
-Feel free to customize this template with any other details specific to "Infinite Runner."
